@@ -1,0 +1,130 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <% include partials/head.ejs %>
+</head>
+<body>
+<div class="main-wrapper">
+    <% include partials/header.ejs%>
+
+    <!-- breadcrumb-area start -->
+    <div class="breadcrumb-area section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="breadcrumb-title"><%= title %></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb-area end -->
+
+    <!-- main-content-wrap start -->
+    <div class="main-content-wrap shop-page section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 order-lg-2 order-2 ">
+                    <div class="shop-sidebar-wrap">
+
+                        <% include widgets/kategorije.ejs %>
+
+                        <% include widgets/sidebanner.ejs %>
+
+                        <% include widgets/najpopularnije.ejs %>
+
+                        <% include widgets/tagovi.ejs %>
+
+                    </div>
+                </div>
+                <div class="col-lg-7 order-lg-1 oreder-1 offset-lg-2 ">
+
+                    <div class="row">
+                        <% if(data) {%>
+                        <% data.forEach(function (clanak) { %>
+                        <div class="col-lg-12 blog-details-area">
+                            <div class="blog-details-image mt-30">
+                                <img src="/assets/images/upload/<%= clanak.filename %>" alt="">
+                            </div>
+                            <div class="our-blog-contnet">
+                                <h5><a href="blog-details.html"><%= clanak.title %></a></h5>
+                                <div class="post_meta">
+                                    <ul>
+                                        <li>
+                                            <p>By: <a href="#"><%= clanak.name %> <%= clanak.surname %></a></p>
+                                        </li>
+                                        <li>
+                                            <p><%= moment(clanak.created_on).format("DD MMMM YYYY");%></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <%- clanak.content_text %>
+                        </div>
+                        <% })} %>
+
+                        <!-- blog-details-wrapper -->
+                        <div class="col-lg-12 review_address_inner mt-60">
+                            <h5>Komentari</h5>
+                            <!-- Single Review -->
+                            <% if(comm){ %>
+                            <% comm.forEach(function (com) { %>
+                            <div class="pro_review">
+
+                                <div class="review_details">
+                                    <div class="review_info">
+                                        <h5><a href="#"><%= com.author_name %></a></h5>
+
+                                    </div>
+                                    <div class="review_date">
+                                        <span><%= moment(com.created_on).format("DD MMMM YYYY");%></span>
+                                    </div>
+                                    <p><%= com.comment_content %></p>
+
+                                </div>
+                            </div>
+                            <% })}  %>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="comments-reply-area">
+                                <h5 class="comment-reply-title mb-30">Ostavite komentar</h5>
+                                <form action="/clanci/submit"  method="post" class="comment-form-area">
+                                    <div class="comment-input">
+                                        <div class="row">
+                                            <div class="hidden">
+                                                <input type="text" class="form-control" id="content_id" name="content_id" value="<%= id %>"/>
+                                            </div>
+                                            <div class="hidden">
+                                                <input type="text" class="form-control" id="slug" name="slug" value="<%= slug %>"/>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                                <input type="text" class="form-control" id="author_name" name="author_name" placeholder="Ime:"/>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email:"/>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <textarea class="form-control" id="comment_content" name="comment_content" rows="3" placeholder="Komentar"></textarea>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <button type="submit" class="btn btn--secondary btn--block">Pošalji</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--// blog-details-wrapper -->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main-content-wrap end -->
+    <% include partials/footer.ejs %>
+</div>
+<% include partials/footerscripts.ejs %>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!-- shop-sidebar start -->
+
+<div class="shop-sidebar">
+    <h4 class="title">Tagovi</h4>
+    <div class="sidebar-tag">
+        <% if(tag){ %>
+        <% tag.forEach(function (tag) { %>
+        <a href="/tags/<%= tag.name %>"><%= tag.name %></a>
+        <% })} %>
+
+    </div>
+</div>
+<!-- shop-sidebar end -->

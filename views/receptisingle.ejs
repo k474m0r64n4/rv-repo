@@ -1,0 +1,232 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <% include partials/head.ejs %>
+</head>
+<body>
+<div class="main-wrapper">
+    <% include partials/header.ejs %>
+    <!-- breadcrumb-area start -->
+    <div class="breadcrumb-area section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="breadcrumb-title"><%= title %></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb-area end -->
+
+    <!-- main-content-wrap start -->
+    <div class="main-content-wrap section-ptb product-details-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-6 col-md-6">
+                    <div class="product-details-images">
+                        <div class="product_details_container">
+                            <!-- product_big_images start -->
+                            <div class="product_big_images-top">
+                                <div class="portfolio-full-image tab-content">
+                                    <% if(data){ %>
+                                    <% data.forEach(function (i) { %>
+                                    <div role="tabpanel" class="tab-pane active product-image-position" id="img-tab-<%= i.image %>">
+                                        <a href="/assets/images/upload/<%= i.filename%>" class="img-poppu">
+                                            <img src="/assets/images/upload/<%= i.filename %>" alt="#">
+                                        </a>
+                                    </div>
+                                    <% })} %>
+                                    <% if(gal){ %>
+                                    <% gal.forEach(function (g) { %>
+                                    <div role="tabpanel" class="tab-pane product-image-position" id="img-tab-<%= g.id %>">
+                                        <a href="/assets/images/upload/<%= g.image%>" class="img-poppu">
+                                            <img src="/assets/images/upload/<%= g.image %>" alt="#">
+                                        </a>
+                                    </div>
+                                    <% })} %>
+                                </div>
+                            </div>
+                            <!-- product_big_images end -->
+
+                            <!-- Start Small images -->
+                            <ul class="product_small_images-bottom horizantal-product-active nav" role="tablist">
+                                <% if(gal){ %>
+                                <% gal.forEach(function (g) { %>
+                                <li role="presentation" class="pot-small-img active">
+                                    <a href="#img-tab-<%= g.id %>" role="tab" data-toggle="tab">
+                                        <img src="/assets/images/upload/<%= g.image %>" alt="small-image">
+                                    </a>
+                                </li>
+                                <% })} %>
+                            </ul>
+                            <!-- End Small images -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-3 col-md-3">
+                    <!-- product_details_info start -->
+                    <% if(data){ %>
+                    <% data.forEach(function (recept) { %>
+                    <div class="product_details_info">
+                        <h2><%= recept.title %></h2>
+                        <!-- pro_rating start -->
+                        <div class="pro_rating d-flex">
+                            <ul class="product-rating d-flex" >
+                                <li style="font-size: 16px"><span class="ion-android-restaurant"></span> <a href="/recepti/<%= recept.cslug %>/1" ><%= recept.name %></a> </li>
+                            </ul>
+                            <ul class="product-rating d-flex">
+                                <li style="font-size: 16px"> <span class="ion-clock"></span>
+                                <%= recept.time %></li>
+                            </ul>
+                            <ul class="product-rating d-flex">
+                                <li style="font-size: 16px"> <span class="ion-android-calendar"></span>
+                                <%= moment(recept.created_on).format("DD MMMM YYYY");%></li>
+                            </ul>
+                            <ul class="product-rating d-flex">
+                                <li style="font-size: 16px"> <span class="ion-android-people"></span>
+                                <%= recept.ime %> <%= recept.surname%></li>
+                            </ul>
+                        </div>
+                        <!-- pro_rating end -->
+                        <!-- pro_details start -->
+                        <div class="pro_details">
+                            <%- recept.description %>
+                        </div>
+                        <!-- pro_details end -->
+
+                        <!-- pro_social_share start -->
+                        <div class="pro_social_share d-flex">
+                            <h2 class="title_2">Share :</h2>
+                            <ul class="pro_social_link">
+                                <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                                <li><a href="#"><i class="ion-social-tumblr"></i></a></li>
+                                <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                                <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="pro_social_share d-flex">
+                            <h2 class="title_2">Tagovi : </h2>
+                            <ul class="product-rating d-flex" >
+                                <% if(data5){ %>
+                                <% data5.forEach(function (tag) { %>
+                                <li><a href="/tags/<%= tag.name %>" style="margin-top: -10px"> <%= tag.name %></a></li>
+                                <% })} %>
+                            </ul>
+                        </div>
+                        <!-- pro_social_share end -->
+                    </div>
+                    <% })} %>
+                    <!-- product_details_info end -->
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-3 ">
+                    <!-- shop-sidebar-wrap start -->
+                    <div class="shop-sidebar-wrap">
+
+                        <% include widgets/kategorije.ejs %>
+
+                    </div>
+                    <!-- shop-sidebar-wrap end -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-details-tab mt-60">
+                        <ul role="tablist" class="mb-50 nav">
+                            <li class="active" role="presentation">
+                                <a data-toggle="tab" role="tab" href="#description" class="active">Priprema</a>
+                            </li>
+                            <li role="presentation">
+                                <a data-toggle="tab" role="tab" href="#reviews">Komentari</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="product_details_tab_content tab-content">
+                        <!-- Start Single Content -->
+                        <% if(data){%>
+                        <% data.forEach(function (recept) { %>
+                        <div class="product_tab_content tab-pane active" id="description" role="tabpanel">
+                            <div class="product_description_wrap">
+                                <div class="product_desc mb--30">
+                                    <h2 class="title_3"> </h2>
+                                    <%- recept.content_text%>
+                                </div>
+                            </div>
+                        </div>
+                        <% })} %>
+                        <!-- End Single Content -->
+
+                        <!-- Start Single Content -->
+                        <div class="product_tab_content tab-pane" id="reviews" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <!-- blog-details-wrapper -->
+                                    <div class="col-lg-12 review_address_inner">
+                                        <h5>Komentari</h5>
+                                        <!-- Single Review -->
+                                        <% if(comm){ %>
+                                        <% comm.forEach(function (com) { %>
+                                        <div class="pro_review">
+                                            <div class="review_details">
+                                                <div class="review_info">
+                                                    <h5><a href="#"><%= com.author_name %></a></h5>
+                                                    <div class="rating_send">
+                                                        <a href="#">Reply</a>
+                                                    </div>
+                                                </div>
+                                                <div class="review_date">
+                                                    <span><%= moment(com.created_on).format("DD MMMM YYYY");%></span>
+                                                </div>
+                                                <p><%= com.comment_content %></p>
+
+                                            </div>
+                                        </div>
+                                        <% })}  %>
+                                        <!--// Single Review -->
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="comments-reply-area">
+                                            <h5 class="comment-reply-title mb-30">Ostavite Komentar</h5>
+                                            <form action="/recepti/submit" method="post" class="comment-form-area">
+                                                <div class="comment-input">
+                                                    <div class="row">
+                                                        <div class="hidden">
+                                                            <input type="text" class="form-control" id="content_id" name="content_id" value="<%= id %>"/>
+                                                        </div>
+                                                        <div class="hidden">
+                                                            <input type="text" class="form-control" id="slug" name="slug" value="<%= slug %>"/>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                                            <input type="text" class="form-control" id="author_name" name="author_name" placeholder="Ime:"/>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email:"/>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                                            <textarea class="form-control" id="comment_content" name="comment_content" rows="3" placeholder="Komentar"></textarea>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                                            <button type="submit" class="btn btn--secondary btn--block">Pošalji</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--// blog-details-wrapper -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main-content-wrap end -->
+    <% include partials/footer.ejs %>
+</div>
+<% include partials/footerscripts.ejs %>
+</body>
+</html>

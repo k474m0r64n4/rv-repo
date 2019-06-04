@@ -1,0 +1,21 @@
+<!-- shop-sidebar start -->
+<div class="sidbar-product shop-sidebar mb-30">
+    <h4 class="title">Najpopularnije</h4>
+    <!-- sidbar-product-inner start -->
+    <% if(popular){ %>
+    <% popular.forEach(function (naj) { %>
+    <div class="sidbar-product-inner">
+        <div class="product-image">
+            <a href="/recepti/<%= naj.slug %>"><img src="/assets/images/upload/<%= naj.filename %>" alt=""></a>
+        </div>
+        <div class="product-content text-left">
+            <h3><a href="/recepti/<%= naj.slug %>"><%= naj.title %></a></h3>
+            <div class="price-box">
+            </div>
+        </div>
+    </div>
+    <% })} %>
+    <!-- sidbar-product-inner end -->
+
+</div>
+<!-- shop-sidebar end -->

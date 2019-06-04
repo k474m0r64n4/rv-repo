@@ -1,0 +1,65 @@
+<footer>
+    <div class="footer-top section-pb section-pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="widget-footer mt-20">
+                        <div class="footer-logo">
+                            <a href="index.html"><img src="/assets/images/logo/logo.png" alt=""></a>
+                        </div>
+                        <p>Rene Vegan došao je sa misijom da pokaže da veganska ishrana, uprkos mišljenju većine, nije ni komplikovana, ni skupa, ni neukusna. Šta više, usuđuje se da tvrdi da je veoma jednostavna, jeftina i preukusna.</p>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <div class="widget-footer mt-30">
+                        <h6 class="title-widget">Linkovi</h6>
+                        <ul class="footer-list">
+                            <li><a href="/">Početna</a></li>
+                            <li><a href="/recepti">Recepti</a></li>
+                            <li><a href="/clanci">Članci</a></li>
+                            <li><a href="/onama">O nama</a></li>
+                            <li><a href="/kontakt">Kontakt</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="widget-footer mt-30">
+                        <h6 class="title-widget">Najnoviji recepti</h6>
+                        <ul class="footer-blog">
+                            <% if(footer){ %>
+                            <% footer.forEach(function (f) { %>
+                            <li>
+                                <div class="widget-blog-wrap">
+                                    <div class="widget-blog-image">
+                                        <a href="/recepti/<%= f.slug %>"><img src="/assets/images/upload/<%= f.filename %>" alt=""></a>
+                                    </div>
+                                    <div class="widget-blog-content">
+                                        <h6><a href="/recepti/<%= f.slug %>"><%= f.title %></a></h6>
+                                        <div class="widget-blog-meta">
+                                            <span><%= moment(f.created_on).format("DD MMM");%></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <% })} %>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copy-right-text text-center">
+                        <p><a href="/">Rene Vegan</a> 2019</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

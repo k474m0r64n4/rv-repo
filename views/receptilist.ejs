@@ -1,0 +1,166 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <% include partials/head.ejs %>
+</head>
+<body>
+<div class="main-wrapper">
+
+    <% include partials/header.ejs %>
+
+    <!-- breadcrumb-area start -->
+    <div class="breadcrumb-area section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="breadcrumb-title"><%= title %></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb-area end -->
+
+    <!-- main-content-wrap start -->
+    <div class="main-content-wrap shop-page section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 order-lg-2 order-2">
+                    <!-- shop-sidebar-wrap start -->
+                    <div class="shop-sidebar-wrap">
+
+                        <% include widgets/kategorije.ejs %>
+
+                        <% include widgets/sidebanner.ejs %>
+
+                        <% include widgets/najpopularnije.ejs %>
+
+                        <% include widgets/tagovi.ejs %>
+                    </div>
+                    <!-- shop-sidebar-wrap end -->
+                </div>
+                <div class="col-lg-9 order-lg-1 order-1">
+                    <!-- shop-product-wrapper start -->
+                    <div class="shop-product-wrapper">
+                        <div class="row">
+                            <div class="col">
+                                <!-- shop-top-bar start -->
+                                <div class="shop-top-bar">
+                                    <!-- product-view-mode start -->
+                                    <div class="product-mode">
+                                        <!--shop-item-filter-list-->
+                                        <ul class="nav shop-item-filter-list" role="tablist">
+                                            <li class="active"><a class="active" data-toggle="tab" href="#grid"><i class="ion-ios-keypad-outline"></i></a></li>
+                                            <li><a data-toggle="tab" href="#list"><i class="ion-ios-list-outline"></i></a></li>
+                                        </ul>
+                                        <!-- shop-item-filter-list end -->
+                                    </div>
+                                    <!-- product-view-mode end -->
+                                </div>
+                                <!-- shop-top-bar end -->
+                            </div>
+                        </div>
+
+                        <!-- shop-products-wrap start -->
+                        <div class="shop-products-wrap">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="grid">
+                                    <div class="shop-product-wrap">
+                                        <div class="row">
+                                            <% if(data){ %>
+                                            <% data.forEach(function (recept) { %>
+                                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                                <!-- single-product-wrap start -->
+                                                <div class="single-product-wrap">
+                                                    <div class="product-image">
+                                                        <a href="/recepti/<%= recept.slug %>"><img src="/assets/images/upload/<%= recept.filename %>" alt="Produce Images"></a>
+                                                        <span class="label"><a href="/recepti/<%= recept.cslug %>/1"><%= recept.name %></a></span>
+                                                        <div class="product-action">
+                                                            <a href="/recepti/<%= recept.slug %>" class="add-to-cart" style="font-size: 12px; width: 85px"><i class="ion-clock"></i> <%= recept.time %></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content">
+                                                        <h3><a href="/recepti/<%= recept.slug %>"><%= recept.title %></a></h3>
+                                                    </div>
+                                                </div>
+                                                <!-- single-product-wrap end -->
+                                            </div>
+                                            <% })} %>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="list">
+                                    <div class="shop-product-list-wrap">
+                                        <% if(data){ %>
+                                        <% data.forEach(function (recept) { %>
+                                        <div class="row product-layout-list">
+                                            <div class="col-lg-4 col-md-5">
+                                                <!-- single-product-wrap start -->
+                                                <div class="single-product-wrap">
+                                                    <div class="product-image">
+                                                        <a href="/recepti/<%= recept.slug %>"><img src="/assets/images/upload/<%= recept.filename %>" alt="Produce Images"></a>
+                                                        <span class="label"><a href="/recepti/<%= recept.cslug %>/1"><%= recept.name %></a></span>
+
+
+                                                    </div>
+                                                </div>
+                                                <!-- single-product-wrap end -->
+                                            </div>
+                                            <div class="col-lg-8 col-md-7">
+                                                <div class="product-content text-left">
+                                                    <span><a href="/recepti/<%= recept.slug %>"><h3><%= recept.title %></h3></a>  </span>
+                                                    [ <span class="ion-clock">  <%= recept.time %> ] </span>
+                                                    [ <span class="ion-android-calendar"> <%= moment(recept.created_on).format("DD MMMM YYYY");%> ]</span>
+                                                    <div>
+                                                        <%- recept.description %>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% })} %>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- shop-products-wrap end -->
+
+                        <!-- paginatoin-area start -->
+                        <div class="paginatoin-area">
+                            <% if(pages != 1){%>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <ul class="pagination-box">
+                                        <% if(current != 1) {    %>
+                                        <li><a class="Previous" href="<%= url %><%= current - 1 %>"><i class="ion-chevron-left"></i></a></li>
+                                        <% } %>
+
+                                        <% for( i=1; i<=pages; i++ ) { %>
+                                        <li ><a href="<%= url %><%= i%>"><%= i%></a></li>
+                                        <%}%>
+
+                                        <% if(pages) {    %>
+                                        <% if(current != pages) {    %>
+                                        <li><a class="Next" href="<%= url %><%= parseInt(current) + 1; %>"><i class="ion-chevron-right"></i></a></li>
+                                        <% }} %>
+                                    </ul>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                        <!-- paginatoin-area end -->
+                    </div>
+                    <!-- shop-product-wrapper end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main-content-wrap end -->
+
+    <% include partials/footer.ejs %>
+
+</div>
+<% include partials/footerscripts.ejs %>
+</body>
+</html>

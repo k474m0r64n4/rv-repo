@@ -1,0 +1,12 @@
+<!-- shop-sidebar start -->
+<div class="shop-sidebar mb-30">
+    <h4 class="title">Kategorije</h4>
+    <ul>
+        <li><a href="/recepti">Sve</a></li>
+        <% if(cat){ %>
+        <% cat.forEach(function (c) { %>
+        <li><a href="/recepti/<%= c.slug %>/1"><%= c.name %></a></li>
+        <% })} %>
+    </ul>
+</div>
+<!-- shop-sidebar end -->

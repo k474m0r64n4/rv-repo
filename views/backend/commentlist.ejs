@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <% include ../partials/head %>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+
+<div class="main-wrapper boxed-layout">
+
+    <!-- main-content-wrap start -->
+    <div class="main-content-wrap section-ptb my-account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="account-dashboard">
+                        <% include adminheader.ejs %>
+                        <div class="row">
+                            <% include admincategorys.ejs %>
+                            <div class="col-md-12 col-lg-10">
+                                <div class="tab-pane active" id="account-details">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered nobottommargin">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Content ID</th>
+                                                <th>Author</th>
+                                                <th>Email</th>
+                                                <th>Content</th>
+                                                <th>Status</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            <% if (data) { %>
+                                            <% data.forEach(function(com){ %>
+
+
+                                            <tr>
+                                                <td><%= com.id %></td>
+                                                <td><%= com.content_id %></td>
+                                                <td><%= com.author_name %></td>
+                                                <td><%= com.email %></td>
+                                                <td><%= com.comment_content %></td>
+                                                <td><form method="post" action="/comments/approve">
+
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control hidden" name="id" id="id" value="<%= com.id %>" >
+                                                            <%= com.status %>
+                                                            <select  class="form-control"  name="status" id="status">
+                                                                <option value="<%= com.status %>"> </option>
+                                                                <option value="approve">Approve</option>
+
+                                                                <option value="disapprove">Disapprove</option>
+
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input type="submit" value="Change" name="submit" class="btn btn--secondary btn--block">
+                                                        </div>
+
+
+                                                    </form>
+                                                </td>
+
+
+
+
+
+                                            </tr>
+                                            <% }) %>
+                                            <% } %>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main-content-wrap end -->
+
+
+
+
+</div>
+<% include ../partials/footerscripts.ejs %>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script>
+<!-- Initialize the editor. -->
+<script>
+    $(function() {
+        $('textarea').froalaEditor()
+    });
+</script>
+</body>
+</html>
+

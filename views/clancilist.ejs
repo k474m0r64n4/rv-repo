@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <% include partials/head.ejs %>
+</head>
+<body>
+<div class="main-wrapper">
+    <% include partials/header.ejs %>
+
+    <!-- breadcrumb-area start -->
+    <div class="breadcrumb-area section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="breadcrumb-title"><%= title %></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb-area end -->
+
+    <!-- main-content-wrap start -->
+    <div class="main-content-wrap shop-page section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 order-lg-2 order-2">
+                    <!-- shop-sidebar-wrap start -->
+                    <div class="shop-sidebar-wrap">
+
+                        <% include widgets/kategorije.ejs %>
+
+                        <% include widgets/sidebanner.ejs %>
+
+                        <% include widgets/najpopularnije.ejs %>
+
+                        <% include widgets/tagovi.ejs %>
+                    </div>
+                    <!-- shop-sidebar-wrap end -->
+                </div>
+                <div class="col-lg-9 order-lg-1 order-1">
+                    <!-- shop-product-wrapper start -->
+                    <div class="blog-product-wrapper">
+
+                        <div class="row">
+                            <% if(data){ %>
+                            <% data.forEach(function (clanak) { %>
+                            <div class="col-lg-6 col-md-6">
+                                <!-- single-blog Start -->
+                                <div class="single-blog mt-30">
+                                    <div class="blog-image">
+                                        <a href="/clanci/<%= clanak.slug %>"><img src="/assets/images/upload/<%= clanak.filename %>" alt=""></a>
+                                        <div class="meta-tag">
+                                            <p><%= moment(clanak.created_on).format("DD MMM");%></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="blog-content">
+                                        <h4><a href="/clanci/<%= clanak.slug %>"><%= clanak.title %></a></h4>
+                                        <%- clanak.description %>
+                                        <div class="read-more">
+                                            <a href="/clanci/<%= clanak.slug %>">READ MORE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-blog End -->
+                            </div>
+                            <% })} %>
+
+                        </div>
+                        <!-- paginatoin-area start -->
+                        <div class="paginatoin-area">
+                            <% if(pages != 1){%>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <ul class="pagination-box">
+                                        <% if(current != 1) {    %>
+                                        <li><a class="Previous" href="<%= url %><%= current - 1 %>"><i class="ion-chevron-left"></i></a></li>
+                                        <% } %>
+
+                                        <% for( i=1; i<=pages; i++ ) { %>
+                                        <li ><a href="<%= url %><%= i%>"><%= i%></a></li>
+                                            <%}%>
+
+                                            <% if(pages) {    %>
+                                            <% if(current != pages) {    %>
+                                        <li><a class="Next" href="<%= url %><%= parseInt(current) + 1; %>"><i class="ion-chevron-right"></i></a></li>
+                                        <% }} %>
+                                    </ul>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                        <!-- paginatoin-area end -->
+                    </div>
+                    <!-- shop-product-wrapper end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main-content-wrap end -->
+
+    <% include partials/footer.ejs %>
+
+</div>
+<% include partials/footerscripts.ejs %>
+</body>
+</html>

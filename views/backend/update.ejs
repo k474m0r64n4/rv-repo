@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <% include ../partials/head %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+<div class="main-wrapper boxed-layout">
+
+    <!-- main-content-wrap start -->
+    <div class="main-content-wrap section-ptb my-account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="account-dashboard">
+                        <% include adminheader.ejs %>
+                        <div class="row">
+                            <% include admincategorys.ejs %>
+                            <div class="col-md-12 col-lg-10">
+                                <div class="tab-pane active" id="account-details">
+
+                                    <div class="form">
+                                        <form method="post" action="/update/submit">
+                                            <div class="row">
+                                                <% if(data){ %>
+                                                <% data.forEach(function (recepti) { %>
+                                                <div class="col-md-6 hidden">
+                                                    <label>Id:</label>
+                                                    <input type="text" class="form-control" name="id" id="id" value="<%= recepti.id %>" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Title:</label>
+                                                    <input type="text" class="form-control" name="title" id="title" value="<%= recepti.title %>" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Time:</label>
+                                                    <input type="text" class="form-control" name="time" id="time" value="<%= recepti.time %>">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label>Description:</label>
+                                                    <textarea class="form-control" name="description" id="description" rows="3" required>
+                                                        <%- recepti.description %>
+                                                    </textarea>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label>Content text:</label>
+                                                    <textarea class="form-control" name="content_text" id="content_text" rows="3" required>
+                                                        <%- recepti.content_text %>
+                                                    </textarea>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Image:</label>
+                                                    <select  class="form-control"  name="image" id="image"  required>
+                                                        <option value="<%= recepti.image %>"><%= recepti.filename %></option>
+                                                        <% if(img){%>
+                                                        <% img.forEach(function (i) { %>
+                                                        <option value="<%= i.id %>"><%= i.filename %></option>
+                                                        <% });}%>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Gallery:</label>
+                                                    <input id="allow" type="checkbox"/>
+
+                                                    <select  class="form-control"   name="gallery" id="gallery"  disabled>
+                                                        <option value="<%= recepti.gallery %>"><%= recepti.gallery %></option>
+                                                        <% if(gal){%>
+                                                        <% gal.forEach(function (g) { %>
+                                                        <option value="<%= g.title %>"><%= g.title %></option>
+                                                        <% });}%>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 hidden">
+                                                    <label>Author:</label>
+                                                    <% author_id.forEach(function (author) {  %>
+                                                    <input type="text" class="form-control" name="author_id" id="author_id"  value="<%= author.id %>" required>
+                                                    <% });%>
+                                                </div>
+                                                <div class="col-md-6" hidden>
+                                                    <label>ct_id:</label>
+                                                    <input type="text" class="form-control" name="ct_id" id="ct_id" value="<%= recepti.ct_id %>" required>
+                                                </div>
+                                                <% if(recepti.ct_id == 1){ %>
+                                                <div class="col-md-6">
+                                                    <label>Category:</label>
+                                                    <select  class="form-control" name="category_id" id="category_id">
+                                                        <option value="<%= recepti.category_id %>" selected ><%= recepti.name %></option>
+
+                                                        <option value="1">Doručak</option>
+                                                        <option value="2">Ručak</option>
+                                                        <option value="3">Večera</option>
+                                                        <option value="4">Salate</option>
+                                                        <option value="5">Dezerti</option>
+                                                        <option value="6">Dečija</option>
+                                                    </select>
+                                                </div>
+                                                <% }%>
+                                                <div class="col-md-6">
+                                                    <label>Slug:</label>
+                                                    <input type="text" class="form-control" name="slug" id="slug" value="<%= recepti.slug %>" required>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="submit" value="Update" name="submit" class="btn btn--secondary btn--block">
+                                                </div>
+                                                <% });} %>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main-content-wrap end -->
+
+
+
+
+</div>
+
+<% include ../partials/footerscripts.ejs %>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script>
+
+<script>
+    var allowDrinksCheckbox = document.getElementById("allow");
+    var drinkSelect = document.getElementById("gallery");
+
+    allowDrinksCheckbox.addEventListener("change", function(event) {
+        if (event.target.checked) {
+            drinkSelect.disabled = false;
+        } else {
+            drinkSelect.disabled = true;
+        }
+    }, false);
+</script>
+<script>
+    $(function() {
+        $('textarea').froalaEditor()
+    });
+</script>
+</body>
+</html>

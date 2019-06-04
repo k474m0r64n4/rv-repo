@@ -1,0 +1,177 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <% include partials/head.ejs %>
+</head>
+<body>
+<div class="main-wrapper">
+  <% include partials/header.ejs %>
+
+  <!-- Hero Section Start -->
+  <div class="hero-slider hero-slider-one">
+    <!-- Single Slide Start -->
+    <div class="single-slide" style="background-image: url(/assets/images/upload/alo2c.jpg)">
+      <!-- Hero Content One Start -->
+      <div class="hero-content-one container">
+        <div class="row">
+          <div class="col-lg-10 col-md-10">
+            <div class="slider-text-info">
+              <h2>Ko je <span>Rene Vegan </span>? </h2>
+              <p>Misteriozni chef de cuisine koji se neočekivano pojavljuje i smišlja šta danas da jedete umesto vas</p>
+              <div class="hero-btn">
+                <a href="/onama" class="slider-btn uppercase"><span>Saznaj Više</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Hero Content One End -->
+    </div>
+    <!-- Single Slide End -->
+
+    <!-- Single Slide Start -->
+    <div class="single-slide" style="background-image: url(/assets/images/upload/alo4n.jpg)">
+      <!-- Hero Content One Start -->
+      <div class="hero-content-one container">
+        <div class="row">
+          <div class="col-lg-10 col-md-10">
+            <div class="slider-text-info">
+              <h2><span>Veganski </span>Recepti </h2>
+              <p>Ovde možete pronaći čitav spektar vege recepata pogodnih za različite prilike i sve obroke</p>
+              <div class="hero-btn">
+                <a href="/recepti" class="slider-btn uppercase"><span>Saznaj Više</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Hero Content One End -->
+    </div>
+    <!-- Single Slide End -->
+
+    <!-- Single Slide Start -->
+    <div class="single-slide" style="background-image: url(/assets/images/upload/meksicka-salata.jpg)">
+      <!-- Hero Content One Start -->
+      <div class="hero-content-one container">
+        <div class="row">
+          <div class="col-lg-10 col-md-10">
+            <div class="slider-text-info">
+              <h2>Želite da postanete <span>Autor</span>? </h2>
+              <p>Pošaljite nam vaše recepte</p>
+              <div class="hero-btn">
+                <a href="/kontakt" class="slider-btn uppercase"><span>Kontaktirajte nas</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Hero Content One End -->
+    </div>
+    <!-- Single Slide End -->
+  </div>
+  <!-- Hero Section End -->
+
+  <!-- Start Product Area -->
+  <div class="porduct-area section-pt section-pb-60">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="section-title text-center">
+            <h2><a href="/recepti"><span>Veganski</span> Recepti</h2></a>
+            <p>Ovde možete pronaći čitav spektar vege recepata pogodnih za različite prilike i sve obroke:</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row product-active-lg-4">
+        <% if(data2){ %>
+        <% data2.forEach(function (recept) {  %>
+        <div class="col-lg-3">
+          <!-- single-product-wrap start -->
+          <div class="single-product-wrap">
+            <div class="product-image">
+              <a href="/recepti/<%= recept.slug %>"><img src="/assets/images/upload/<%= recept.filename %>" alt="Produce Images"></a>
+              <span class="label"><a href="/recepti/<%= recept.cslug %>/1"><%= recept.name %></a></span>
+              <div class="product-action">
+                <a href="/recepti/<%= recept.slug %>" class="add-to-cart" style="font-size: 12px; width: 85px"><i class="ion-clock"></i> <%= recept.time %></a>
+
+              </div>
+            </div>
+            <div class="product-content">
+              <h3><a href="/recepti/<%= recept.slug %>"><%= recept.title %></a></h3>
+            </div>
+          </div>
+          <!-- single-product-wrap end -->
+        </div>
+        <% })}%>
+      </div>
+    </div>
+  </div>
+  <!-- Start Product End -->
+
+  <!-- Banner Area Start -->
+  <div class="banner-area section-pb">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 mt-30">
+          <!-- Single Banner Start -->
+          <div class="single-banner-two banner_bg-two">
+            <div class="banner-content-two text-left">
+              <div class="banner-content-box">
+                <h3><span>Imate ideju za recept?</span></h3>
+                <a href="/kontakt">Pošaljite odmah</a>
+              </div>
+            </div>
+          </div>
+          <!-- Single Banner End -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Banner Area End -->
+
+  <!-- Blog Area Start -->
+  <div class="blog-area section-ptb">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-title text-center">
+            <h2><a href="/clanci"><span>Najnoviji</span> Članci</a></h2>
+            <p>Zanimljivi i poučni tekstovi u vezi sa veganskom ishranom prikupljeni širom interneta:</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <% if(data){ %>
+        <% data.forEach(function (clanak) { %>
+        <div class="col-lg-6 col-md-6">
+          <!-- single-blog Start -->
+          <div class="single-blog mt-30">
+            <div class="blog-image">
+              <a href="/clanci/<%= clanak.slug %>"><img src="/assets/images/upload/<%= clanak.filename %>" alt=""></a>
+              <div class="meta-tag">
+                <p><%= moment(clanak.created_on).format("DD MMM");%></p>
+              </div>
+            </div>
+
+            <div class="blog-content">
+              <h4><a href="/clanci/<%= clanak.slug %>"><%= clanak.title %></a></h4>
+                <%- clanak.description %>
+              <div class="read-more">
+                <a href="/clanci/<%= clanak.slug %>">Pročitaj</a>
+              </div>
+            </div>
+          </div>
+          <!-- single-blog End -->
+        </div>
+        <% })} %>
+      </div>
+    </div>
+  </div>
+  <!-- Blog Area End -->
+  <% include partials/footer.ejs %>
+</div>
+<% include partials/footerscripts.ejs %>
+</body>
+</html>

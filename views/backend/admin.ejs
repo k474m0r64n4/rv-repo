@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+    <% include ../partials/head %>
+
+</head>
+<body>
+
+<div class="main-wrapper boxed-layout">
+
+    <!-- main-content-wrap start -->
+    <div class="main-content-wrap section-ptb my-account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="account-dashboard">
+                        <% include adminheader.ejs %>
+                        <div class="row">
+                            <% include admincategorys.ejs %>
+                            <div class="col-md-12 col-lg-10">
+                                <!-- Tab panes -->
+                                <div class="tab-content dashboard-content">
+                                    <div class="tab-pane active" id="dashboard">
+
+                                        <p>Need help?</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main-content-wrap end -->
+
+
+
+
+</div>
+
+<% include ../partials/footerscripts.ejs %>
+</body>
+</html>

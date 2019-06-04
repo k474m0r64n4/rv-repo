@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <!-- Document Meta
+        ============================================= -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--IE Compatibility Meta-->
+    <meta name="author" content="zytheme"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Multi-purpose Business html5 template">
+    <link href="/assets/images/favicon/favicon.png" rel="icon">
+
+    <!-- Fonts
+        ============================================= -->
+    <link href="http://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CPoppins:300,400,500,600,700" rel="stylesheet" type="text/css">
+
+    <!-- Stylesheets
+        ============================================= -->
+    <link href="/assets/css/external.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Document Title
+        ============================================= -->
+    <title>Enormous | Multi-purpose Business Html5 Template</title>
+</head>
+<body>
+<div class="preloader">
+    <div class="load-bar">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</div><!-- Document Wrapper
+	============================================= -->
+<div id="wrapper" class="wrapper clearfix">
+
+    <!-- Team #2
+    ============================================= -->
+    <section id="team4" class="team team-4 bg-white" style="padding-top: 50px">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+                    <div class="text--center heading heading-2 mb-50">
+                        <h2 class="heading--title"><%= title %></h2>
+                        <div class="divider--line divider--center"></div>
+                        <ol class="breadcrumb">
+                            <li><a href="/admin"><span style="color: #0c6db0">admin</span></a></li>
+                            <li class="active"><span style="color: #0c6db0">author</span></li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- .col-md-6 end -->
+            </div>
+            <!-- .row end -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+                    <div class="form">
+                        <form method="post" action="/authors/submit">
+                            <div class="row">
+                                <% if(data){ %>
+                                <% data.forEach(function (author) { %>
+                                <div class="col-md-6">
+                                    <label>Id:</label>
+                                    <input type="text" class="form-control" name="user_id" id="user_id" value="<%= author.user_id %>" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Name:</label>
+                                    <input type="text" class="form-control" name="name" id="name" value="<%= author.name %>" >
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Lastname:</label>
+                                    <input type="text" class="form-control" name="surname" id="surname" value="<%= author.surname %>" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Email:</label>
+                                    <input type="text" class="form-control" name="public_email" id="public_email" value="<%= author.public_email %>"  >
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Bio:</label>
+                                    <input type="text" class="form-control" name="bio" id="bio" value="<%= author.bio %>" >
+                                </div>
+
+                                <div class="col-md-12">
+                                    <input type="submit" value="Send Message" name="submit" class="btn btn--secondary btn--block">
+                                </div>
+                                <% });} %>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- .col-md-6 end -->
+            </div>
+            <!-- .row end -->
+        </div>
+        <!-- .container end -->
+    </section>
+    <!-- #team2 end  -->
+    <div class="clearfix mb-150"></div>
+
+
+
+
+
+</div><!-- #wrapper end -->
+
+<!-- Footer Scripts
+============================================= -->
+<script src="/assets/js/jquery-2.2.4.min.js"></script>
+<script src="/assets/js/plugins.js"></script>
+<script src="/assets/js/functions.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script>
+<!-- Initialize the editor. -->
+<script>
+    $(function() {
+        $('textarea').froalaEditor()
+    });
+</script>
+</body>
+</html>
